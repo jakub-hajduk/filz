@@ -1,0 +1,20 @@
+{
+  "name": "filz",
+  "version": "1.0.0",
+  "description": "Simple tool for creating own cli-s based on commander",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^9.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.5",
+    "dotenv": "^16.0.1",
+    "esbuild": "^0.14.49"
+  }
+}
