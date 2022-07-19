@@ -1,32 +1,51 @@
-const esbuild = require('esbuild')
-const dotenv = require('dotenv')
+const { buildSync } = require('esbuild')
+const { resolve } = require('path')
+const {rmSync, readFileSync, writeFileSync, existsSync} = require("fs");
 
-const arg = (arg) => (process.argv.slice(2) || []).includes(arg)
-
-const mapObj = (object, callback) => Object.fromEntries(Object.entries(object).map(([key, value], index) => callback(value, key, index)))
-
-const environment = arg('prod') ? 'production' : 'development';
-
-const envVariables = {
-    ...dotenv.config({ path: `.env.${environment}`}).parsed,
-    ENV: environment
+if( existsSync('./dist') ) {
+  rmSync('./dist', {recursive: true})
 }
 
-const define = mapObj(envVariables, (value, key) => [`process.env.${key}`, `"${value}"`])
+const baseConfig = {
+  entryPoints: [resolve(__dirname, '../src/index.ts')],
+  target: 'node16',
+  platform: 'node',
+  bundle: true,
+  treeShaking: true,
+  external: ['esbuild']
+}
 
-esbuild.build({
-    entryPoints: ['./src/index.ts'],
-    define,
-    outdir: './dist',
-    watch: !!arg('watch'),
-    logLevel: 'info',
-    target: 'node16',
-    platform: 'node',
-    format: 'cjs',
-    bundle: true,
-    treeShaking: true,
-    loader: {
-        '.html': 'text',
-        '.css': 'text'
-    },
+buildSync({
+  ...baseConfig,
+  outfile: './dist/index.cjs',
+  format: 'cjs'
 })
+
+buildSync({
+  ...baseConfig,
+  outfile: './dist/index.mjs',
+  format: 'esm'
+})
+
+const packageJson = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'))
+
+const {name, version, description, keywords, author, license} = packageJson;
+
+const outputJson = {
+  name,
+  version,
+  description,
+  keywords,
+  author,
+  license,
+  main: 'index.cjs',
+  module: 'index.mjs',
+  types: 'index.d.ts',
+  peerDependencies: {
+    esbuild: packageJson.devDependencies.esbuild
+  }
+}
+
+writeFileSync('./dist/package.json', JSON.stringify(outputJson, null, 2), 'utf-8')
+
+

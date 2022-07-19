@@ -1,7 +1,11 @@
 {
-  "compilerOptions": {
-    "types": [
-      "node"
-    ]
-  }
+    "files": ["./src/index.ts"],
+    "compilerOptions": {
+        "outFile": "./dist/index.d.ts",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "types": [
+            "node"
+        ]
+    }
 }
