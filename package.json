@@ -1,6 +1,6 @@
 {
   "name": "filz",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple tool for creating own cli-s based on commander",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,12 @@
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["cli", "framework", "commander", "nested"],
+  "keywords": [
+    "cli",
+    "framework",
+    "commander",
+    "nested"
+  ],
   "author": "Jakub Hajduk",
   "license": "ISC",
   "dependencies": {
