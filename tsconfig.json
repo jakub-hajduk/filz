@@ -1,9 +1,15 @@
 {
     "files": ["./src/index.ts"],
     "compilerOptions": {
-        "outFile": "./dist/index.d.ts",
+        "outDir": "./dist/",
         "declaration": true,
+        "esModuleInterop": true,
         "emitDeclarationOnly": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": ["ES2022"],
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "target": "ES2022",
         "types": [
             "node"
         ]

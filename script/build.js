@@ -12,7 +12,7 @@ const baseConfig = {
   platform: 'node',
   bundle: true,
   treeShaking: true,
-  external: ['esbuild']
+  external: ['esbuild', 'commander']
 }
 
 buildSync({
@@ -40,9 +40,10 @@ const outputJson = {
   license,
   main: 'index.cjs',
   module: 'index.mjs',
-  types: 'index.d.ts',
+  typings: 'index.d.ts',
   peerDependencies: {
-    esbuild: packageJson.devDependencies.esbuild
+    esbuild: packageJson.devDependencies.esbuild,
+    commander: packageJson.commander
   }
 }
 
