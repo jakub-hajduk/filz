@@ -1,6 +1,6 @@
 {
   "name": "filz",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple tool for creating own cli-s based on commander",
   "main": "index.js",
   "scripts": {
