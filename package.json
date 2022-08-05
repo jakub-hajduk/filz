@@ -10,15 +10,10 @@
   },
   "keywords": [
     "cli",
-    "framework",
-    "commander",
-    "nested"
+    "framework"
   ],
   "author": "Jakub Hajduk",
   "license": "ISC",
-  "dependencies": {
-    "commander": "^9.4.0"
-  },
   "devDependencies": {
     "@types/node": "^18.0.5",
     "dotenv": "^16.0.1",
