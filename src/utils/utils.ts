@@ -17,9 +17,9 @@ export const closestPackageJsonPath = closestFile('package.json')
 
 export const closestProjectRootDir = dirname(closestPackageJsonPath)
 
-export const closestPackageJsonContents = () => {
-  return JSON.parse(readFileSync(closestPackageJsonPath || '', 'utf-8'))
-}
+export const closestPackageJsonContents = closestPackageJsonPath
+  ? JSON.parse(readFileSync(closestPackageJsonPath || '', 'utf-8'))
+  : {}
 
 export const currentProject = closestPackageJsonContents.name
 
