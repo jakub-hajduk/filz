@@ -4,6 +4,8 @@ import {existsSync, readFileSync} from "fs";
 export const closestFile = (filename, path = process.cwd()) => {
   const filepath = join(path, filename)
 
+  if (filepath === filename) return null
+
   if (existsSync(filepath)) {
     return filepath
   }
@@ -15,7 +17,7 @@ export const closestFile = (filename, path = process.cwd()) => {
 
 export const closestPackageJsonPath = closestFile('package.json')
 
-export const closestProjectRootDir = dirname(closestPackageJsonPath)
+export const closestProjectRootDir = closestPackageJsonPath ? dirname(closestPackageJsonPath) : null
 
 export const closestPackageJsonContents = closestPackageJsonPath
   ? JSON.parse(readFileSync(closestPackageJsonPath || '', 'utf-8'))
